@@ -1,0 +1,22 @@
+<ion-view view-title="Journal Entries">
+  <ion-content class="padding">
+    <ng-audio-recorder id='audioInput'
+                       audio-model='recordedAudioBlob'
+                       on-record-complete="uploadToWatson()">
+      <!-- Start controls, exposed via recorder-->
+      <div ng-if="recorder.isAvailable">
+        <button ng-click="recorder.startRecord()" type="button" ng-disabled="recorder.status.isRecording">
+          Start Record
+        </button>
+        <button ng-click="recorder.stopRecord();uploadToWatson()" type="button" ng-disabled="recorder.status.isRecording === false">
+          Stop Record
+        </button>
+        <button ng-click="recorder.playbackRecording()" type="button"
+                ng-disabled="recorder.status.isRecording || !recorder.audioModel">
+          Play Back
+        </button>
+      </div>
+    </ng-audio-recorder>
+    <h2>{{diary}}</h2>
+  </ion-content>
+</ion-view>
